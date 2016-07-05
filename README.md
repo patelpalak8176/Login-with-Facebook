@@ -15,6 +15,7 @@ Facebook - version 6.0.10.0
 In Startup file - Configuration Method
 ----------------------------------
 // Following code is used for FB authentication. Its using FacebookAuthenticationProvider() & //FacebookClient() for getting public profile data of user
+
             app.UseFacebookAuthentication(new FacebookAuthenticationOptions
             {
                 AppId = "AppId",
@@ -32,12 +33,12 @@ In Startup file - Configuration Method
                 }
             });
 
-            app.UseGoogleAuthentication(clientId: "clientID", clientSecret: "clientSecret");
 
 ---------------------------------------------------------------------------------------------
 In Login Controller 
 ---------------------------------------------------------------------------------------------
-[HttpPost]
+
+            [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
@@ -46,26 +47,29 @@ In Login Controller
         }
 
 
-[AllowAnonymous]
+            [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
- // get login info from external login providers i.e facebook & google
+            // get login info from external login providers i.e facebook & google
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return RedirectToAction("Index", "Login", new { isExternalLoginFailed = true });
             }
 
-if (loginInfo.Login.LoginProvider == "Facebook")
+            if (loginInfo.Login.LoginProvider == "Facebook")
             {
                 var identity = AuthenticationManager.GetExternalIdentity(DefaultAuthenticationTypes.ExternalCookie);
                 var accessToken = identity.FindFirstValue("FacebookAccessToken");
                 var fb = new FacebookClient(accessToken);
                 dynamic myInfo = fb.Get(Constants.FacebookRequiredPermissions); // specify the fields       
             }
-In Login Controller add following
 
- // Used for XSRF protection when adding external logins
+---------------------------------------------------------------------------------------------
+In Login Controller 
+---------------------------------------------------------------------------------------------
+
+            // Used for XSRF protection when adding external logins
         /// <summary>
         /// The xsrf key.
         /// </summary>
