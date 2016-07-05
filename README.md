@@ -2,7 +2,7 @@
 Allows to login with FB using Auth, Identity and Facebook Client
 
 
-[12:00:13 PM | Edited 12:00:37 PM] Palak K. Patel: FB Authentication 
+FB Authentication 
 ----------------------------------
 DLLs which will be required 
 ----------------------------------
@@ -63,7 +63,7 @@ if (loginInfo.Login.LoginProvider == "Facebook")
                 var fb = new FacebookClient(accessToken);
                 dynamic myInfo = fb.Get(Constants.FacebookRequiredPermissions); // specify the fields       
             }
-[12:00:32 PM | Edited 11:59:34 AM] Palak K. Patel:  In Login Controller add following
+In Login Controller add following
 
  // Used for XSRF protection when adding external logins
         /// <summary>
