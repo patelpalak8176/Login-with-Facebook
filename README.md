@@ -6,9 +6,9 @@ FB Authentication
 ----------------------------------
 DLLs which will be required 
 ----------------------------------
-Microsoft.AspNet.Identity
-Microsoft.Owin.Security
-Microsoft.Owin.Security.Facebook
+Microsoft.AspNet.Identity,
+Microsoft.Owin.Security,
+Microsoft.Owin.Security.Facebook,
 Facebook - version 6.0.10.0
 
 ----------------------------------
